@@ -1,5 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { StyleSheet, Image, Platform } from 'react-native';
+import { Image, Platform, StyleSheet } from "react-native";
 
 import { Collapsible } from '@/components/Collapsible';
 import { ExternalLink } from '@/components/ExternalLink';
@@ -90,13 +90,14 @@ export default function TabTwoScreen() {
 
 const styles = StyleSheet.create({
   headerImage: {
-    color: '#808080',
+    color: "#808080",
     bottom: -90,
     left: -35,
-    position: 'absolute',
+    position: "absolute",
   },
   titleContainer: {
-    flexDirection: 'row',
+    backgroundColor: "red",
+    flexDirection: "row",
     gap: 8,
   },
 });
