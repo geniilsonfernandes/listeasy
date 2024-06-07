@@ -30,10 +30,12 @@ const ShortcutButton = ({
       >
         <View style={styles.iconWrapper}>{icon}</View>
         <View>
-          <ThemedText type="defaultSemiBold" colorName="text900">
+          <ThemedText fontFamily="PoppinsSemiBold" size={14} color="text900">
             {title}
           </ThemedText>
-          <ThemedText type="paragraph">{description}</ThemedText>
+          <ThemedText fontFamily="PoppinsRegular" size={12}>
+            {description}
+          </ThemedText>
         </View>
       </ThemedView>
     </TouchableOpacity>
@@ -44,7 +46,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
     borderRadius: 16,
-    width: 180,
   },
   iconWrapper: {
     paddingBottom: 16,

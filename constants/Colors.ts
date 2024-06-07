@@ -12,7 +12,8 @@ export const Colors = {
     card: "#fff",
 
     text: "#949494",
-    text900: "#333",
+    text200: "#949494",
+    text900: "#514844",
     icon: "#949494",
     background: "#fff",
     tint: tintColorLight,
@@ -25,9 +26,9 @@ export const Colors = {
     bg: "#11181C",
     card: "#2E2E2E",
 
-    text: "#ECEDEE",
-    text200: "#ECEDEE",
-    text900: "#999",
+    text: "#9BA1A6",
+    text200: "#9BA1A6",
+    text900: "#ECEDEE",
     background: "#151718",
     tint: tintColorDark,
     icon: "#ECEDEE",

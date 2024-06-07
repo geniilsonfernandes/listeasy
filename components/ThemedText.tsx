@@ -1,76 +1,39 @@
-import { StyleSheet, Text, type TextProps } from "react-native";
+import { Text, type TextProps } from "react-native";
 
 import { Colors } from "@/constants/Colors";
+import { Fonts } from "@/constants/Fonts";
 import { useThemeColor } from "@/hooks/useThemeColor";
 
 export type ThemedTextProps = TextProps & {
   lightColor?: string;
   darkColor?: string;
-  colorName?: keyof typeof Colors.light & keyof typeof Colors.dark;
-  type?:
-    | "default"
-    | "title"
-    | "defaultSemiBold"
-    | "subtitle"
-    | "link"
-    | "paragraph";
+  color?: keyof typeof Colors.light & keyof typeof Colors.dark;
+  fontFamily?: keyof typeof Fonts;
+  size?: number;
 };
 
 export function ThemedText({
   style,
   lightColor,
   darkColor,
-  type = "default",
-  colorName = "text",
+  fontFamily,
+  size,
+  color = "text",
   ...rest
 }: ThemedTextProps) {
-  const color = useThemeColor(
+  const colorThme = useThemeColor(
     { light: lightColor, dark: darkColor },
-    colorName
+    color
   );
 
   return (
     <Text
-      style={[
-        { color },
-        type === "default" ? styles.default : undefined,
-        type === "title" ? styles.title : undefined,
-        type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
-        type === "subtitle" ? styles.subtitle : undefined,
-        type === "link" ? styles.link : undefined,
-        style,
-      ]}
+      style={{
+        fontSize: size || 16,
+        color: colorThme,
+        fontFamily: fontFamily,
+      }}
       {...rest}
     />
   );
 }
-
-const styles = StyleSheet.create({
-  default: {
-    fontSize: 16,
-    lineHeight: 24,
-  },
-  defaultSemiBold: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: "600",
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: "bold",
-    lineHeight: 32,
-  },
-  paragraph: {
-    fontSize: 16,
-    lineHeight: 24,
-  },
-  subtitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  link: {
-    lineHeight: 30,
-    fontSize: 16,
-    color: "#0a7ea4",
-  },
-});

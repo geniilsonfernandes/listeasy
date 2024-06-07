@@ -1,8 +1,6 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { Tabs } from "expo-router";
 import {
   Home,
   NotebookTabs,
@@ -18,14 +16,15 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: Colors[colorScheme ?? "light"].brand,
         tabBarInactiveTintColor: Colors[colorScheme ?? "light"].tabIconDefault,
         headerShown: true,
         tabBarStyle: {
-          paddingVertical: 24,
-          height: 100,
-          borderTopWidth: 0,
-          borderTopColor: "transparent",
+          borderColor: "transparent",
+          borderWidth: 0,
+          paddingBottom: 24,
+          paddingTop: 16,
+          height: 80,
         },
       }}
     >
@@ -45,6 +44,11 @@ export default function TabLayout() {
       />
       <Tabs.Screen
         name="add"
+        listeners={{
+          tabPress: (e) => {
+            e.preventDefault();
+          },
+        }}
         options={{
           title: "",
           tabBarShowLabel: false,
@@ -60,6 +64,7 @@ export default function TabLayout() {
                 borderRadius: 10,
                 height: 50,
                 width: 50,
+                marginBottom: 24,
               }}
             >
               <Plus color="#fff" />
