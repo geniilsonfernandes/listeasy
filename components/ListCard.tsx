@@ -51,7 +51,9 @@ const ListCard = ({ ...rest }: ListCardProps) => {
           </View>
         </View>
         <View style={styles.badges}>
-          <Badge size="sm">Em progresso</Badge>
+          <Badge variant="warning">Em progresso</Badge>
+          <Badge variant="success">Em progresso</Badge>
+          <Badge variant="danger">Em progresso</Badge>
         </View>
       </ThemedView>
     </TouchableOpacity>

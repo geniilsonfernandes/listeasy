@@ -1,24 +1,41 @@
 import React from "react";
-import { StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
+import {
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextStyle,
+  View,
+  ViewStyle,
+} from "react-native";
 
 type BadgeProps = {
   color?: string;
-  size?: "sm" | "md" | "lg";
+  variant?: "success" | "warning" | "danger";
   children?: React.ReactNode;
 };
 
-const Badge = ({ color = "#FFE9E1", size = "md", children }: BadgeProps) => {
-  const sizes: { [key: string]: StyleProp<ViewStyle> } = {
-    sm: styles.small,
-    md: styles.medium,
-    lg: styles.large,
+const Badge = ({
+  color = "#FFE9E1",
+  variant = "success",
+  children,
+}: BadgeProps) => {
+  const variants: { [key: string]: StyleProp<ViewStyle> } = {
+    success: styles.success,
+    warning: styles.warning,
+    danger: styles.danger,
+  };
+  const textVariants: { [key: string]: StyleProp<TextStyle> } = {
+    success: styles.textSuccess,
+    warning: styles.textWarning,
+    danger: styles.textDanger,
   };
 
-  const badgeStyle = sizes[size] || sizes.md;
+  const variantStyle = variants[variant];
+  const textStyle = textVariants[variant];
 
   return (
-    <View style={[styles.badge, badgeStyle, { backgroundColor: color }]}>
-      <Text style={styles.text}> {children} </Text>
+    <View style={[styles.badge, variantStyle, textStyle]}>
+      <Text style={textStyle}> {children} </Text>
     </View>
   );
 };
@@ -28,22 +45,33 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     alignItems: "center",
     justifyContent: "center",
+    textAlignVertical: "center",
+    textAlign: "center",
+    paddingBottom: 2,
     borderRadius: 12,
     paddingHorizontal: 4,
   },
-  small: {
-    height: 18,
+  success: {
+    backgroundColor: "#E9FBE9",
   },
-  medium: {
-    height: 30,
+  warning: {
+    backgroundColor: "#FFF8E9",
   },
-  large: {
-    height: 40,
+  danger: {
+    backgroundColor: "#FFE9E1",
   },
-  text: {
-    fontSize: 10,
-    lineHeight: 16,
-    color: "#FE8C68",
+
+  textSuccess: {
+    color: "#008000",
+    fontSize: 12,
+  },
+  textWarning: {
+    color: "#FFA500",
+    fontSize: 12,
+  },
+  textDanger: {
+    fontSize: 12,
+    color: "#FF0000",
   },
 });
 
