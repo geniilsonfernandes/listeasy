@@ -52,8 +52,6 @@ const ListCard = ({ ...rest }: ListCardProps) => {
         </View>
         <View style={styles.badges}>
           <Badge variant="warning">Em progresso</Badge>
-          <Badge variant="success">Em progresso</Badge>
-          <Badge variant="danger">Em progresso</Badge>
         </View>
       </ThemedView>
     </TouchableOpacity>
@@ -62,7 +60,7 @@ const ListCard = ({ ...rest }: ListCardProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    padding: 12,
     borderRadius: 16,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 5 },
@@ -89,7 +87,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   infomations: {
-    paddingTop: 2,
+    paddingTop: 8,
     flexDirection: "row",
     gap: 8,
   },
@@ -99,7 +97,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   badges: {
-    paddingTop: 8,
+    paddingTop: 12,
     flexDirection: "row",
   },
 });

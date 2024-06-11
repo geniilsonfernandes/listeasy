@@ -1,7 +1,7 @@
+import TabBarButton from "@/components/TabBarButton";
 import { AlignLeft, Bell } from "lucide-react-native";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import TabBarButton from "../TabBarButton";
 
 const Navigation = () => {
   return (
