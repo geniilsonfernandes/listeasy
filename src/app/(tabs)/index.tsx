@@ -1,5 +1,6 @@
-import HomeView from "@/components/views/HomeView";
+import HomeView from "@/views/HomeView";
 import { Tabs } from "expo-router";
+import React from "react";
 import { Platform, SafeAreaView, StatusBar, StyleSheet } from "react-native";
 
 export default function HomeScreen() {

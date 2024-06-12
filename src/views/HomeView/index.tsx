@@ -3,18 +3,20 @@ import ShortcutButtons from "@/components/ShortcutButtons";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import YStack from "@/components/ui/YStack";
-import React from "react";
-import { FlatList, StyleSheet, View } from "react-native";
 import Navigation from "./components/Navigation";
 
+import React from "react";
+import { FlatList, StyleSheet, View } from "react-native";
+
+const renderItem = () => {
+  return (
+    <View style={styles.itemContainer}>
+      <ListCard />
+    </View>
+  );
+};
+
 const HomeView = () => {
-  const renderItem = () => {
-    return (
-      <View style={styles.itemContainer}>
-        <ListCard />
-      </View>
-    );
-  };
   return (
     <ThemedView style={styles.container}>
       <FlatList
@@ -54,7 +56,9 @@ const styles = StyleSheet.create({
   },
   flatList: {
     flex: 1,
+    zIndex: 10,
   },
+
   itemContainer: {
     paddingHorizontal: 16,
     paddingBottom: 8,

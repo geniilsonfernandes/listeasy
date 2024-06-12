@@ -9,6 +9,7 @@ const tintColorDark = "#fff";
 export const Colors = {
   light: {
     bg: "#F3F3F4",
+    bg100: "#F3F3F4",
     card: "#fff",
 
     text: "#949494",
@@ -24,6 +25,7 @@ export const Colors = {
   },
   dark: {
     bg: "#11181C",
+    bg100: "#383838",
     card: "#2E2E2E",
 
     text: "#9BA1A6",
