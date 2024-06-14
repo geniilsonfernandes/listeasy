@@ -12,7 +12,7 @@ type IconProps = {
 
 const Icon = ({
   icon = "SquarePen",
-  color = "text200",
+  color = "text100",
   size = 18,
 }: IconProps) => {
   const { colors } = useTheme<Theme>();

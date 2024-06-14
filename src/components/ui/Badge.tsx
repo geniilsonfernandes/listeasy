@@ -14,7 +14,8 @@ const Badge = ({ text = "badge", variant }: BadgeProps) => {
     <Box
       bg={bg}
       px="s"
-      borderRadius={8}
+      borderRadius={16}
+      py="xs"
       alignItems="center"
       alignSelf="flex-start"
     >

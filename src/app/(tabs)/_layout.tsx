@@ -1,9 +1,10 @@
 import Icon from "@/components/Icon";
 import { Box } from "@/components/ui";
-import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { Theme } from "@/theme";
 import HomeBottomSheetModal from "@/views/HomeView/components/HomeBottomSheetModal";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { useTheme } from "@shopify/restyle";
 import { Tabs } from "expo-router";
 import { Home, NotebookTabs, SquareUser, TramFront } from "lucide-react-native";
 import { useRef } from "react";
@@ -12,15 +13,16 @@ export default function TabLayout() {
   const bottomSheet = useRef<BottomSheetModal>(null);
   const hanldePresent = () => bottomSheet.current?.present();
   const colorScheme = useColorScheme();
+  const { colors } = useTheme<Theme>();
 
   return (
     <>
       <HomeBottomSheetModal ref={bottomSheet} />
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme ?? "light"].brand,
-          tabBarInactiveTintColor:
-            Colors[colorScheme ?? "light"].tabIconDefault,
+          tabBarActiveTintColor: colors.greenPrimary,
+          tabBarInactiveTintColor: colors.text100,
+
           headerShown: true,
           tabBarStyle: {
             borderColor: "transparent",
@@ -28,6 +30,8 @@ export default function TabLayout() {
             paddingBottom: 40,
             paddingTop: 0,
             height: 100,
+            backgroundColor: colors.bg300,
+            borderTopColor: colors.greenPrimary,
           },
         }}
       >
@@ -71,7 +75,7 @@ export default function TabLayout() {
                 borderRadius={16}
                 marginBottom="l"
               >
-                <Icon icon="PanelBottomOpen" color="text900" size={32} />
+                <Icon icon="PanelBottomOpen" size={32} />
               </Box>
             ),
           }}
