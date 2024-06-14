@@ -1,4 +1,3 @@
-import SheetButton from "@/components/SheetButton";
 import { Box, Text } from "@/components/ui";
 import { Theme } from "@/theme";
 import {
@@ -12,9 +11,15 @@ import React, { forwardRef, useCallback, useMemo } from "react";
 
 type Ref = BottomSheetModal;
 
-const HomeBottomSheetModal = forwardRef<Ref>((props, ref) => {
+type SheetModalBaseProps = {
+  children: React.ReactNode;
+  title: string;
+  snaps?: number[];
+};
+
+const SheetModalBase = forwardRef<Ref, SheetModalBaseProps>((props, ref) => {
   const { colors } = useTheme<Theme>();
-  const snapPoints = useMemo(() => [280], []);
+  const snapPoints = useMemo(() => props.snaps || [280], [props.snaps]);
 
   const renderBackdrop = useCallback(
     (props: BottomSheetBackdropProps) => (
@@ -31,25 +36,21 @@ const HomeBottomSheetModal = forwardRef<Ref>((props, ref) => {
       ref={ref}
       index={0}
       snapPoints={snapPoints}
-      backgroundStyle={{ backgroundColor: colors.bg300 }}
+      backgroundStyle={{ backgroundColor: colors.bg100 }}
       backdropComponent={renderBackdrop}
       handleIndicatorStyle={{
-        backgroundColor: "#E0E0E0",
+        backgroundColor: colors.bg300,
         width: 100,
       }}
     >
-      <Box px="m" gap="m" pt="m">
-        <Text color="text200" variant="body" fontFamily="PoppinsMedium">
-          O que deseja fazer?
+      <Box px="m" gap="m" pt="m" bg="bg100">
+        <Text color="text200" variant="title" fontFamily="PoppinsMedium">
+          {props.title}
         </Text>
-        <Box gap="s">
-          <SheetButton title="Criar nova lista" icon="ScrollText" />
-          <SheetButton title="Cria novo item na dispensa" icon="PackagePlus" />
-          <SheetButton title="Ler codigo" icon="Scan" />
-        </Box>
+        <Box py="s">{props.children}</Box>
       </Box>
     </BottomSheetModal>
   );
 });
 
-export default HomeBottomSheetModal;
+export default SheetModalBase;

@@ -4,12 +4,15 @@ import ListCard from "@/components/ListCard";
 import Shortcut from "@/components/Shortcut";
 import { Box, Text } from "@/components/ui";
 import { Theme } from "@/theme";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useTheme } from "@shopify/restyle";
-import React from "react";
+import React, { useRef } from "react";
 import { FlatList } from "react-native";
 import Navigation from "./components/Navigation";
+import OptionsSheetModal from "./components/OptionsSheetModal";
 
 const HomeView = () => {
+  const optionsSheetModalRef = useRef<BottomSheetModal>(null);
   const theme = useTheme<Theme>();
 
   const renderHeader = () => (
@@ -57,26 +60,36 @@ const HomeView = () => {
   const renderItem = () => {
     return (
       <Box px="m">
-        <ListCard />
+        <ListCard onPress={() => optionsSheetModalRef.current?.present()} />
       </Box>
     );
   };
 
   return (
-    <FlatList
-      alwaysBounceVertical={false}
-      style={{
-        flex: 1,
-        backgroundColor: theme.colors.bg100,
-        paddingBottom: 100,
-      }}
-      data={Array.from(Array(10).keys())}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.toString()}
-      ItemSeparatorComponent={() => <Box height={16} />}
-      ListHeaderComponent={renderHeader}
-      ListFooterComponent={() => <Box height={100} />}
-    />
+    <>
+      <OptionsSheetModal
+        ref={optionsSheetModalRef}
+        onDeleteList={() =>
+          setTimeout(() => {
+            optionsSheetModalRef.current?.dismiss();
+          }, 500)
+        }
+      />
+      <FlatList
+        alwaysBounceVertical={false}
+        style={{
+          flex: 1,
+          backgroundColor: theme.colors.bg100,
+          paddingBottom: 100,
+        }}
+        data={Array.from(Array(10).keys())}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.toString()}
+        ItemSeparatorComponent={() => <Box height={16} />}
+        ListHeaderComponent={renderHeader}
+        ListFooterComponent={() => <Box height={100} />}
+      />
+    </>
   );
 };
 

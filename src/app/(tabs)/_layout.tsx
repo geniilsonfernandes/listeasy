@@ -2,7 +2,7 @@ import Icon from "@/components/Icon";
 import { Box } from "@/components/ui";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { Theme } from "@/theme";
-import HomeBottomSheetModal from "@/views/HomeView/components/HomeBottomSheetModal";
+import CreateSheetModal from "@/views/HomeView/components/CreateSheetModal";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useTheme } from "@shopify/restyle";
 import { Tabs } from "expo-router";
@@ -17,7 +17,7 @@ export default function TabLayout() {
 
   return (
     <>
-      <HomeBottomSheetModal ref={bottomSheet} />
+      <CreateSheetModal ref={bottomSheet} />
       <Tabs
         screenOptions={{
           tabBarActiveTintColor: colors.greenPrimary,
@@ -30,7 +30,7 @@ export default function TabLayout() {
             paddingBottom: 40,
             paddingTop: 0,
             height: 100,
-            backgroundColor: colors.bg300,
+            backgroundColor: colors.bg100,
             borderTopColor: colors.greenPrimary,
           },
         }}
@@ -75,7 +75,7 @@ export default function TabLayout() {
                 borderRadius={16}
                 marginBottom="l"
               >
-                <Icon icon="PanelBottomOpen" size={32} />
+                <Icon icon="PanelBottomOpen" size={32} color="white" />
               </Box>
             ),
           }}
