@@ -1,78 +1,28 @@
+import theme from "@/theme";
 import React from "react";
-import {
-  StyleProp,
-  StyleSheet,
-  Text,
-  TextStyle,
-  View,
-  ViewStyle,
-} from "react-native";
+import { Box, Text } from ".";
 
 type BadgeProps = {
-  color?: string;
+  text?: string;
   variant?: "success" | "warning" | "danger";
-  children?: React.ReactNode;
 };
 
-const Badge = ({
-  color = "#FFE9E1",
-  variant = "success",
-  children,
-}: BadgeProps) => {
-  const variants: { [key: string]: StyleProp<ViewStyle> } = {
-    success: styles.success,
-    warning: styles.warning,
-    danger: styles.danger,
-  };
-  const textVariants: { [key: string]: StyleProp<TextStyle> } = {
-    success: styles.textSuccess,
-    warning: styles.textWarning,
-    danger: styles.textDanger,
-  };
-
-  const variantStyle = variants[variant];
-  const textStyle = textVariants[variant];
-
+const Badge = ({ text = "badge", variant }: BadgeProps) => {
+  const bg = `${variant}Background` as keyof typeof theme.colors;
+  const color = `${variant}Text` as keyof typeof theme.colors;
   return (
-    <View style={[styles.badge, variantStyle, textStyle]}>
-      <Text style={textStyle}> {children} </Text>
-    </View>
+    <Box
+      bg={bg}
+      px="s"
+      borderRadius={8}
+      alignItems="center"
+      alignSelf="flex-start"
+    >
+      <Text color={color} variant="small">
+        {text}
+      </Text>
+    </Box>
   );
 };
-
-const styles = StyleSheet.create({
-  badge: {
-    alignSelf: "flex-start",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlignVertical: "center",
-    textAlign: "center",
-    paddingBottom: 2,
-    borderRadius: 12,
-    paddingHorizontal: 4,
-  },
-  success: {
-    backgroundColor: "#E9FBE9",
-  },
-  warning: {
-    backgroundColor: "#FFF8E9",
-  },
-  danger: {
-    backgroundColor: "#FFE9E1",
-  },
-
-  textSuccess: {
-    color: "#008000",
-    fontSize: 12,
-  },
-  textWarning: {
-    color: "#FFA500",
-    fontSize: 12,
-  },
-  textDanger: {
-    fontSize: 12,
-    color: "#FF0000",
-  },
-});
 
 export default Badge;

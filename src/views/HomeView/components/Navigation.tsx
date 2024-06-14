@@ -1,27 +1,19 @@
+import Icon from "@/components/Icon";
 import TabBarButton from "@/components/TabBarButton";
-import { AlignLeft, Bell } from "lucide-react-native";
+import { Box } from "@/components/ui";
 import React from "react";
-import { StyleSheet, View } from "react-native";
 
 const Navigation = () => {
   return (
-    <View style={styles.container}>
+    <Box flexDirection="row" justifyContent="space-between" paddingVertical="m">
       <TabBarButton>
-        <AlignLeft color={"#999999"} />
+        <Icon icon="AlignLeft" size={24} color="greenPrimary" />
       </TabBarButton>
       <TabBarButton>
-        <Bell color={"#999999"} />
+        <Icon icon="Bell" size={24} color="greenPrimary" />
       </TabBarButton>
-    </View>
+    </Box>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 16,
-  },
-});
 
 export default Navigation;

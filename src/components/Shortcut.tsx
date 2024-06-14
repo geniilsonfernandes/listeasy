@@ -1,4 +1,3 @@
-import { Colors } from "@/constants/Colors";
 import React from "react";
 import {
   StyleSheet,
@@ -6,8 +5,7 @@ import {
   TouchableOpacityProps,
   View,
 } from "react-native";
-import { ThemedText } from "./ThemedText";
-import { ThemedView } from "./ThemedView";
+import { Box, Text } from "./ui";
 
 type ShortcutButtonProps = {
   title: string;
@@ -22,22 +20,18 @@ const ShortcutButton = ({
   ...rest
 }: ShortcutButtonProps) => {
   return (
-    <TouchableOpacity {...rest}>
-      <ThemedView
-        style={styles.container}
-        lightColor={Colors.light.card}
-        darkColor={Colors.dark.card}
-      >
-        <View style={styles.iconWrapper}>{icon}</View>
-        <View>
-          <ThemedText fontFamily="PoppinsSemiBold" size={14} color="text900">
+    <TouchableOpacity {...rest} activeOpacity={0.5} style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <Box style={styles.iconWrapper}>{icon}</Box>
+        <Box gap="s">
+          <Text fontFamily="PoppinsSemiBold" variant="subtitle" color="text100">
             {title}
-          </ThemedText>
-          <ThemedText fontFamily="PoppinsRegular" size={12}>
+          </Text>
+          <Text variant="small" color="text400">
             {description}
-          </ThemedText>
-        </View>
-      </ThemedView>
+          </Text>
+        </Box>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -46,6 +40,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
     borderRadius: 16,
+    backgroundColor: "white",
   },
   iconWrapper: {
     paddingBottom: 16,

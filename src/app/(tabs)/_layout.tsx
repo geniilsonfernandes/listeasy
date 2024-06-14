@@ -1,17 +1,12 @@
+import Icon from "@/components/Icon";
+import { Box } from "@/components/ui";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import HomeBottomSheetModal from "@/views/HomeView/components/HomeBottomSheetModal";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { Tabs } from "expo-router";
-import {
-  Home,
-  NotebookTabs,
-  Plus,
-  SquareUser,
-  TramFront,
-} from "lucide-react-native";
+import { Home, NotebookTabs, SquareUser, TramFront } from "lucide-react-native";
 import { useRef } from "react";
-import { View } from "react-native";
 
 export default function TabLayout() {
   const bottomSheet = useRef<BottomSheetModal>(null);
@@ -30,9 +25,9 @@ export default function TabLayout() {
           tabBarStyle: {
             borderColor: "transparent",
             borderWidth: 0,
-            paddingBottom: 24,
-            paddingTop: 16,
-            height: 80,
+            paddingBottom: 40,
+            paddingTop: 0,
+            height: 100,
           },
         }}
       >
@@ -40,14 +35,18 @@ export default function TabLayout() {
           name="index"
           options={{
             title: "Home",
-            tabBarIcon: ({ color, focused }) => <Home color={color} />,
+            tabBarIcon: ({ color, focused }) => (
+              <Home strokeWidth={1} color={color} />
+            ),
           }}
         />
         <Tabs.Screen
           name="pantry"
           options={{
             title: "Dispensa",
-            tabBarIcon: ({ color, focused }) => <TramFront color={color} />,
+            tabBarIcon: ({ color, focused }) => (
+              <TramFront strokeWidth={1} color={color} />
+            ),
           }}
         />
         <Tabs.Screen
@@ -63,21 +62,17 @@ export default function TabLayout() {
             tabBarShowLabel: false,
 
             tabBarIcon: ({ color, focused }) => (
-              <View
-                style={{
-                  backgroundColor: Colors.light.brand,
-                  paddingHorizontal: 16,
-                  paddingVertical: 12,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: 10,
-                  height: 50,
-                  width: 50,
-                  marginBottom: 24,
-                }}
+              <Box
+                bg="greenPrimary"
+                height={60}
+                width={60}
+                justifyContent="center"
+                alignItems="center"
+                borderRadius={16}
+                marginBottom="l"
               >
-                <Plus color="#fff" />
-              </View>
+                <Icon icon="PanelBottomOpen" color="text900" size={32} />
+              </Box>
             ),
           }}
         />
@@ -85,14 +80,18 @@ export default function TabLayout() {
           name="lists"
           options={{
             title: "Listas",
-            tabBarIcon: ({ color, focused }) => <NotebookTabs color={color} />,
+            tabBarIcon: ({ color, focused }) => (
+              <NotebookTabs strokeWidth={1} color={color} />
+            ),
           }}
         />
         <Tabs.Screen
           name="profile"
           options={{
             title: "Perfil",
-            tabBarIcon: ({ color, focused }) => <SquareUser color={color} />,
+            tabBarIcon: ({ color, focused }) => (
+              <SquareUser strokeWidth={1} color={color} />
+            ),
           }}
         />
       </Tabs>
